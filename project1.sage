@@ -1,7 +1,7 @@
 '''
  Name: Louis Cerda and Finn Dugan
  Class: CPSC 353
- Date Submitted: Feb 2, 2021
+ Date Submitted: Feb 2, 2023
  Assignment: Project 1                                                                     
  Description: This program encrypts and decrypts a ch using a permutated version of the alphabet
 '''
