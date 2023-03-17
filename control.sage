@@ -1,32 +1,35 @@
 '''
- Names: Louis Cerda and Finn Dugan
+ Name: Louis Cerda 
+ Name: Finn Dugan
+ Github Username: louisdcerda
  Class: CPSC 353
- Date Submitted: Feb 2, 2023
- Assignment: Project 1                                                                     
- Description: This program encrypts and decrypts a ch using a permutated version of the alphabet
+ Date Submitted: Mar 5, 2023
+ Assignment: Project 4                                                                     
+ Description: This program encrypts and decrypts a ch using the affine cipher
 '''
 
-import os
-os.system('sage --preparse project1.sage')
-os.system('mv project1.sage.py project1.py')
-import project1 as pr 
+import sys
+os.system('sage --preparse project4.sage')
+os.system('mv project4.sage.py project4.py')
+import project4 as pr 
+import pickle
 
 def init(args):
     mode = args[1]
-    key_file = open(args[2],'r')
+    key_file = open(args[2], 'rb')
     fin = open(args[3],'r')
     fout = open(args[4], 'w')
     return mode, key_file, fin, fout    
 
 def process(args):
     mode, key_file, fin, fout = init(args)
-    key = int(key_file.read())
+    key = pickle.load(key_file)
+
 
     data = fin.read().upper()
     for ch in data:
         if (ch.isalpha()):
             if (mode == 'enc'):
-                #ch = pr.encrypt(ch,key)
                 ch = pr.encrypt(ch,key)
             if (mode == 'dec'):
                 ch = pr.decrypt(ch,key)
@@ -36,12 +39,13 @@ def process(args):
     fout.close()
 
 def write_key(file_name):
-    key_file = open(file_name,'w') 
+    fout = open(file_name, 'wb')
     key = pr.key_gen()
-    key_file.write(str(key))
-    key_file.close()
+    pickle.dump(key, fout)
+    fout.close()
+
 '''
-usage: python3 caesar_tst.py mode key_file input output
+usage: python3 project4.py mode output
 #where:
  mode is enc or dec
  key_file is the name of the file containing the key
@@ -53,7 +57,12 @@ def main():
     if len(sys.argv) == 2:
         write_key(sys.argv[1])
         return
-
     #encrypt or decrypt
     process(sys.argv)
 main()
+
+
+
+
+# go into key writing mode so only pass in two args
+# enc and dec for other two modes
