@@ -43,5 +43,6 @@ def decrypt(ch, key):
     alphaInv = key[1]
     beta = key[2]
 
+    ch = ord(ch)
     ch = alphaInv * (ch - beta) % 26
-    return ch
+    return chr(ch)
