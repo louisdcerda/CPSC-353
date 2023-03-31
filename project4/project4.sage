@@ -15,12 +15,12 @@ Generates and returns the key used in the transposition cipher.  This will inclu
 '''
     
 def key_gen():
-    random.seed(10)
+    random.seed(None)
     betasPoss = [1,3,5,7,9,11,15,17,19,21,23,25]
     
     beta = random.choice(betasPoss)
     alpha = random.randint(0,26)
-    alphaInv = alpha.inverse_mod(26)
+    alphaInv = inverse_mod(alpha,26)
 
     return (alpha,alphaInv,beta)
 
