@@ -1,5 +1,5 @@
 from sage.crypto.block_cipher.sdes import SimplifiedDES
-sdes - SimplifiedDES()
+sdes = SimplifiedDES()
 
 p = 00000000
 k = 0000000000
